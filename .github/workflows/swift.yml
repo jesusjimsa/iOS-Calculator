@@ -13,9 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Move to source folder
-      run: cd iOS-Calculator; pwd; ls -la
     - name: Build
-      run: ls -la; sleep 5; swift build -v
+      run: cd iOS-Calculator; swift build -v
     - name: Run tests
-      run: swift test -v
+      run: cd iOS-Calculator; swift test -v
