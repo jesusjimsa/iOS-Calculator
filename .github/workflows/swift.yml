@@ -16,6 +16,6 @@ jobs:
     - name: Move to source folder
       run: cd iOS-Calculator
     - name: Build
-      run: swift build -v
+      run: xcodebuild -v
     - name: Run tests
       run: swift test -v
