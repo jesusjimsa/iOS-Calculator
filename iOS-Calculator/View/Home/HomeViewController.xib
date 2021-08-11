@@ -20,16 +20,16 @@
                 <outlet property="number7" destination="yaz-e9-fS1" id="ECA-oS-CzB"/>
                 <outlet property="number8" destination="cnM-aU-DuN" id="dRF-lW-TT4"/>
                 <outlet property="number9" destination="Aq7-oi-vlM" id="EUA-lP-sHi"/>
-                <outlet property="number_decimal" destination="FLb-eo-nPA" id="1EI-8H-A65"/>
-                <outlet property="operator_AC" destination="x1T-Qf-GxH" id="vWG-wt-Hw3"/>
-                <outlet property="operator_addition" destination="ztV-kg-zfj" id="tSZ-zt-q9Y"/>
-                <outlet property="operator_division" destination="4Jd-l6-Wax" id="6ed-jQ-c67"/>
-                <outlet property="operator_module" destination="wah-B3-4fB" id="xym-fk-4No"/>
-                <outlet property="operator_multiplication" destination="I8L-Vh-iY4" id="Gtc-db-7LR"/>
-                <outlet property="operator_plus_minus" destination="Dzy-fl-pft" id="gvk-U8-8J3"/>
-                <outlet property="operator_result" destination="UNQ-am-HJI" id="F1F-Wo-GTb"/>
-                <outlet property="operator_substraction" destination="T7s-Tq-LxN" id="uET-7s-u9K"/>
-                <outlet property="result_label" destination="RSG-hm-CD3" id="obe-H5-tXY"/>
+                <outlet property="numberDecimal" destination="FLb-eo-nPA" id="1EI-8H-A65"/>
+                <outlet property="operatorAC" destination="x1T-Qf-GxH" id="vWG-wt-Hw3"/>
+                <outlet property="operatorAddition" destination="ztV-kg-zfj" id="tSZ-zt-q9Y"/>
+                <outlet property="operatorDivision" destination="4Jd-l6-Wax" id="6ed-jQ-c67"/>
+                <outlet property="operatorModule" destination="wah-B3-4fB" id="xym-fk-4No"/>
+                <outlet property="operatorMultiplication" destination="I8L-Vh-iY4" id="Gtc-db-7LR"/>
+                <outlet property="operatorPlusMinus" destination="Dzy-fl-pft" id="gvk-U8-8J3"/>
+                <outlet property="operatorResult" destination="UNQ-am-HJI" id="F1F-Wo-GTb"/>
+                <outlet property="operatorSubstraction" destination="T7s-Tq-LxN" id="uET-7s-u9K"/>
+                <outlet property="resultLabel" destination="RSG-hm-CD3" id="obe-H5-tXY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,7 +55,7 @@
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_AC_Action:" destination="-1" eventType="touchUpInside" id="DiY-qJ-teq"/>
+                                        <action selector="operatorACAction:" destination="-1" eventType="touchUpInside" id="DiY-qJ-teq"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzy-fl-pft">
@@ -69,7 +69,7 @@
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_plus_minus_Action:" destination="-1" eventType="touchUpInside" id="vAH-oH-yel"/>
+                                        <action selector="operatorPlusMinusAction:" destination="-1" eventType="touchUpInside" id="vAH-oH-yel"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wah-B3-4fB">
@@ -83,7 +83,7 @@
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_module_Action:" destination="-1" eventType="touchUpInside" id="eJi-te-haM"/>
+                                        <action selector="operatorModuleAction:" destination="-1" eventType="touchUpInside" id="eJi-te-haM"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-l6-Wax">
@@ -97,7 +97,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_division_Action:" destination="-1" eventType="touchUpInside" id="KKW-sL-Fbs"/>
+                                        <action selector="operatorDivisionAction:" destination="-1" eventType="touchUpInside" id="KKW-sL-Fbs"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -121,7 +121,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="YBO-2K-A0g"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="YBO-2K-A0g"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-aU-DuN">
@@ -135,7 +135,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="72W-78-Bgo"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="72W-78-Bgo"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-oi-vlM">
@@ -149,7 +149,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="u7m-sA-Rz4"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="u7m-sA-Rz4"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8L-Vh-iY4">
@@ -163,7 +163,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_multiplication_Action:" destination="-1" eventType="touchUpInside" id="bRl-Fb-BrO"/>
+                                        <action selector="operatorMultiplicationAction:" destination="-1" eventType="touchUpInside" id="bRl-Fb-BrO"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -187,7 +187,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="c8u-5L-vDI"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="c8u-5L-vDI"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owU-Fu-aog">
@@ -201,7 +201,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="3CM-wQ-N4w"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="3CM-wQ-N4w"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugs-Xu-I5u">
@@ -215,7 +215,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="AzT-Tx-aem"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="AzT-Tx-aem"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7s-Tq-LxN">
@@ -229,7 +229,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_substraction_Action:" destination="-1" eventType="touchUpInside" id="kFQ-4h-fT5"/>
+                                        <action selector="operatorSubstractionAction:" destination="-1" eventType="touchUpInside" id="kFQ-4h-fT5"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -253,7 +253,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="5EP-Bg-gkB"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="5EP-Bg-gkB"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wI0-Rb-eeV">
@@ -267,7 +267,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="lLe-sB-pCh"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="lLe-sB-pCh"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYL-0u-B6x">
@@ -281,7 +281,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="sm9-fV-LIp"/>
+                                        <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="sm9-fV-LIp"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztV-kg-zfj">
@@ -295,7 +295,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="operator_addition_Action:" destination="-1" eventType="touchUpInside" id="G9T-af-f6d"/>
+                                        <action selector="operatorAdditionAction:" destination="-1" eventType="touchUpInside" id="G9T-af-f6d"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -319,7 +319,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="number_Action:" destination="-1" eventType="touchUpInside" id="suv-2d-vRG"/>
+                                                <action selector="numberAction:" destination="-1" eventType="touchUpInside" id="suv-2d-vRG"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -338,7 +338,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="number_decimal_Action:" destination="-1" eventType="touchUpInside" id="AFW-iw-zHd"/>
+                                                <action selector="numberDecimalAction:" destination="-1" eventType="touchUpInside" id="AFW-iw-zHd"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNQ-am-HJI">
@@ -352,7 +352,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="operator_result_Action:" destination="-1" eventType="touchUpInside" id="DTX-Bq-j3B"/>
+                                                <action selector="operatorResultAction:" destination="-1" eventType="touchUpInside" id="DTX-Bq-j3B"/>
                                             </connections>
                                         </button>
                                     </subviews>

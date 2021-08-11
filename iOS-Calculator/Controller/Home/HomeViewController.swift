@@ -11,7 +11,7 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Outlets
     // Result
-    @IBOutlet weak var result_label: UILabel!
+    @IBOutlet weak var resultLabel: UILabel!
 
     // Numbers
     @IBOutlet weak var number0: UIButton!
@@ -24,18 +24,63 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var number7: UIButton!
     @IBOutlet weak var number8: UIButton!
     @IBOutlet weak var number9: UIButton!
-    @IBOutlet weak var number_decimal: UIButton!
+    @IBOutlet weak var numberDecimal: UIButton!
 
     // Operator
-    @IBOutlet weak var operator_AC: UIButton!
-    @IBOutlet weak var operator_plus_minus: UIButton!
-    @IBOutlet weak var operator_module: UIButton!
-    @IBOutlet weak var operator_division: UIButton!
-    @IBOutlet weak var operator_multiplication: UIButton!
-    @IBOutlet weak var operator_substraction: UIButton!
-    @IBOutlet weak var operator_addition: UIButton!
-    @IBOutlet weak var operator_result: UIButton!
+    @IBOutlet weak var operatorAC: UIButton!
+    @IBOutlet weak var operatorPlusMinus: UIButton!
+    @IBOutlet weak var operatorModule: UIButton!
+    @IBOutlet weak var operatorDivision: UIButton!
+    @IBOutlet weak var operatorMultiplication: UIButton!
+    @IBOutlet weak var operatorSubstraction: UIButton!
+    @IBOutlet weak var operatorAddition: UIButton!
+    @IBOutlet weak var operatorResult: UIButton!
 
+    // MARK: - Constants
+
+    private enum OperationType {
+        case none, addition, substraction, multiplication, division, percent
+    }
+
+    private let kDecimalSeparator = Locale.current.decimalSeparator
+    private let kMaxLength = 9
+    private let kMaxValue: Double = 999999999
+    private let kMinValue: Double = 0.00000001
+
+    // Aux values formatter
+    private let auxFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        let locale = Locale.current
+
+        formatter.groupingSeparator = ""
+        formatter.decimalSeparator = locale.decimalSeparator
+        formatter.numberStyle = .decimal
+
+        return formatter
+    }()
+
+    // Default on screen values formatter
+    private let printFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        let locale = Locale.current
+
+        formatter.groupingSeparator = locale.groupingSeparator
+        formatter.decimalSeparator = locale.decimalSeparator
+        formatter.numberStyle = .decimal
+        formatter.maximumIntegerDigits = 9
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 8
+
+        return formatter
+    }()
+
+    // MARK: - Variables
+
+    private var total: Double = 0   // Total
+    private var temp: Double = 0    // Value on screen
+    private var operating = false   // Tell if an operator has been selected
+    private var decimal = false     // TGell if the value is decimal
+    private var operation: OperationType = .none    // Current operation
 
     //MARK: - Initialization
 
@@ -65,59 +110,59 @@ final class HomeViewController: UIViewController {
         number7.round()
         number8.round()
         number9.round()
-        number_decimal.round()
+        numberDecimal.round()
 
-        operator_AC.round()
-        operator_plus_minus.round()
-        operator_module.round()
-        operator_division.round()
-        operator_multiplication.round()
-        operator_substraction.round()
-        operator_addition.round()
-        operator_result.round()
+        operatorAC.round()
+        operatorPlusMinus.round()
+        operatorModule.round()
+        operatorDivision.round()
+        operatorMultiplication.round()
+        operatorSubstraction.round()
+        operatorAddition.round()
+        operatorResult.round()
 
-
+        numberDecimal.setTitle(kDecimalSeparator, for: .normal)
     }
 
     // MARK: - Buttons Actions
 
-    @IBAction func operator_AC_Action(_ sender: UIButton) {
+    @IBAction func operatorACAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_plus_minus_Action(_ sender: UIButton) {
+    @IBAction func operatorPlusMinusAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_module_Action(_ sender: UIButton) {
+    @IBAction func operatorModuleAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_division_Action(_ sender: UIButton) {
+    @IBAction func operatorDivisionAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_multiplication_Action(_ sender: UIButton) {
+    @IBAction func operatorMultiplicationAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_substraction_Action(_ sender: UIButton) {
+    @IBAction func operatorSubstractionAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_addition_Action(_ sender: UIButton) {
+    @IBAction func operatorAdditionAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func operator_result_Action(_ sender: UIButton) {
+    @IBAction func operatorResultAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func number_decimal_Action(_ sender: UIButton) {
+    @IBAction func numberDecimalAction(_ sender: UIButton) {
         sender.shine()
     }
 
-    @IBAction func number_Action(_ sender: UIButton) {
+    @IBAction func numberAction(_ sender: UIButton) {
         sender.shine()
         print(sender.tag)
     }
