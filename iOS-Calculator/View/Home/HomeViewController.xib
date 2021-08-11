@@ -24,8 +24,8 @@
                 <outlet property="operatorAC" destination="x1T-Qf-GxH" id="vWG-wt-Hw3"/>
                 <outlet property="operatorAddition" destination="ztV-kg-zfj" id="tSZ-zt-q9Y"/>
                 <outlet property="operatorDivision" destination="4Jd-l6-Wax" id="6ed-jQ-c67"/>
-                <outlet property="operatorModule" destination="wah-B3-4fB" id="xym-fk-4No"/>
                 <outlet property="operatorMultiplication" destination="I8L-Vh-iY4" id="Gtc-db-7LR"/>
+                <outlet property="operatorPercent" destination="wah-B3-4fB" id="xym-fk-4No"/>
                 <outlet property="operatorPlusMinus" destination="Dzy-fl-pft" id="gvk-U8-8J3"/>
                 <outlet property="operatorResult" destination="UNQ-am-HJI" id="F1F-Wo-GTb"/>
                 <outlet property="operatorSubstraction" destination="T7s-Tq-LxN" id="uET-7s-u9K"/>

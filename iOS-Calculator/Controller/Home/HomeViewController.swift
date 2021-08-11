@@ -29,7 +29,7 @@ final class HomeViewController: UIViewController {
     // Operator
     @IBOutlet weak var operatorAC: UIButton!
     @IBOutlet weak var operatorPlusMinus: UIButton!
-    @IBOutlet weak var operatorModule: UIButton!
+    @IBOutlet weak var operatorPercent: UIButton!
     @IBOutlet weak var operatorDivision: UIButton!
     @IBOutlet weak var operatorMultiplication: UIButton!
     @IBOutlet weak var operatorSubstraction: UIButton!
@@ -114,7 +114,7 @@ final class HomeViewController: UIViewController {
 
         operatorAC.round()
         operatorPlusMinus.round()
-        operatorModule.round()
+        operatorPercent.round()
         operatorDivision.round()
         operatorMultiplication.round()
         operatorSubstraction.round()
@@ -122,49 +122,139 @@ final class HomeViewController: UIViewController {
         operatorResult.round()
 
         numberDecimal.setTitle(kDecimalSeparator, for: .normal)
+
+        result()
     }
 
     // MARK: - Buttons Actions
 
     @IBAction func operatorACAction(_ sender: UIButton) {
+        clear()
+
         sender.shine()
     }
 
     @IBAction func operatorPlusMinusAction(_ sender: UIButton) {
+        temp *= -1
+
+        resultLabel.text = printFormatter.string(from: NSNumber(value: temp))
+
         sender.shine()
     }
 
     @IBAction func operatorModuleAction(_ sender: UIButton) {
+        if operation != .percent {
+            result()
+        }
+
+        operating = true
+        operation = .percent
+        result()
+
         sender.shine()
     }
 
     @IBAction func operatorDivisionAction(_ sender: UIButton) {
+        result()
+        operating = true
+        operation = .division
+
         sender.shine()
     }
 
     @IBAction func operatorMultiplicationAction(_ sender: UIButton) {
+        result()
+        operating = true
+        operation = .multiplication
+
         sender.shine()
     }
 
     @IBAction func operatorSubstractionAction(_ sender: UIButton) {
+        result()
+        operating = true
+        operation = .substraction
+
         sender.shine()
     }
 
     @IBAction func operatorAdditionAction(_ sender: UIButton) {
+        result()
+        operating = true
+        operation = .addition
+
         sender.shine()
     }
 
     @IBAction func operatorResultAction(_ sender: UIButton) {
+        result()
+
         sender.shine()
     }
 
     @IBAction func numberDecimalAction(_ sender: UIButton) {
+        let currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+
+        if !operating && currentTemp.count >= kMaxLength {
+            return
+        }
+
+        resultLabel.text = resultLabel.text! + kDecimalSeparator!
+        decimal = true
+
         sender.shine()
     }
 
     @IBAction func numberAction(_ sender: UIButton) {
         sender.shine()
         print(sender.tag)
+    }
+
+    // Clear values
+    private func clear() {
+        operation = .none
+        operatorAC.setTitle("AC", for: .normal)
+
+        if temp != 0 {
+            temp = 0
+            resultLabel.text = "0"
+        }
+        else {
+            total = 0
+            result()
+        }
+    }
+
+    // Obtain final result
+    private func result() {
+        switch operation {
+        case .none:
+            // Nothing to do here
+            break
+        case .addition:
+            total += temp
+            break
+        case .substraction:
+            total -= temp
+            break
+        case .multiplication:
+            total *= temp
+            break
+        case .division:
+            total /= temp
+            break
+        case .percent:
+            temp = temp / 100
+            total = temp
+            break
+        }
+
+        // Screen formatting
+        if total <= kMaxValue || total >= kMinValue {
+            resultLabel.text = printFormatter.string(from: NSNumber(value: total))
+        }
+
+        print("TOTAL: \(total)")
     }
 
 }
