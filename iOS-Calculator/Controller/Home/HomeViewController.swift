@@ -74,6 +74,17 @@ final class HomeViewController: UIViewController {
         return formatter
     }()
 
+    // On screen scientific format values formatter
+    private let printScientificFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+
+        formatter.numberStyle = .scientific
+        formatter.maximumFractionDigits = 3
+        formatter.exponentSymbol = "e"
+
+        return formatter
+    }()
+
     // MARK: - Variables
 
     private var total: Double = 0   // Total
@@ -206,8 +217,33 @@ final class HomeViewController: UIViewController {
     }
 
     @IBAction func numberAction(_ sender: UIButton) {
+        var currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+
+        operatorAC.setTitle("C", for: .normal)
+
+        if !operating && currentTemp.count >= kMaxLength {
+            return
+        }
+
+        // Operation selected
+        if operating {
+            total = total == 0 ? temp : total
+            resultLabel.text = ""
+            currentTemp = ""
+            operating = false
+        }
+
+        // Decimal operation selected
+        if decimal {
+            currentTemp = "\(currentTemp)\(kDecimalSeparator!)"
+            decimal = false
+        }
+
+        let number = sender.tag
+        temp = Double(currentTemp + String(number))!
+        resultLabel.text = printFormatter.string(from: NSNumber(value: temp))
+
         sender.shine()
-        print(sender.tag)
     }
 
     // Clear values
@@ -250,7 +286,9 @@ final class HomeViewController: UIViewController {
         }
 
         // Screen formatting
-        if total <= kMaxValue || total >= kMinValue {
+        if let currentTotal = auxFormatter.string(from: NSNumber(value: total)), currentTotal.count > kMaxLength {
+            resultLabel.text = printScientificFormatter.string(from: NSNumber(value: total))
+        } else {
             resultLabel.text = printFormatter.string(from: NSNumber(value: total))
         }
 
