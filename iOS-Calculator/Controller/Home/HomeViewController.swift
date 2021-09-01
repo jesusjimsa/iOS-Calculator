@@ -44,8 +44,6 @@ final class HomeViewController: UIViewController {
 
     private let kDecimalSeparator = Locale.current.decimalSeparator
     private let kMaxLength = 9
-    private let kMaxValue: Double = 999999999
-    private let kMinValue: Double = 0.00000001
 
     // Aux values formatter
     private let auxFormatter: NumberFormatter = {
@@ -55,6 +53,26 @@ final class HomeViewController: UIViewController {
         formatter.groupingSeparator = ""
         formatter.decimalSeparator = locale.decimalSeparator
         formatter.numberStyle = .decimal
+
+        formatter.maximumIntegerDigits = 100
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 100
+
+        return formatter
+    }()
+
+    // Aux total values formatter
+    private let auxTotalFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        let locale = Locale.current
+
+        formatter.groupingSeparator = ""
+        formatter.decimalSeparator = ""
+        formatter.numberStyle = .decimal
+
+        formatter.maximumIntegerDigits = 100
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 100
 
         return formatter
     }()
@@ -172,6 +190,7 @@ final class HomeViewController: UIViewController {
 
         operating = true
         operation = .division
+        selectVisualOperation()
 
         sender.shine()
     }
@@ -183,6 +202,7 @@ final class HomeViewController: UIViewController {
 
         operating = true
         operation = .multiplication
+        selectVisualOperation()
 
         sender.shine()
     }
@@ -194,6 +214,7 @@ final class HomeViewController: UIViewController {
 
         operating = true
         operation = .substraction
+        selectVisualOperation()
 
         sender.shine()
     }
@@ -205,6 +226,7 @@ final class HomeViewController: UIViewController {
 
         operating = true
         operation = .addition
+        selectVisualOperation()
 
         sender.shine()
     }
@@ -216,7 +238,7 @@ final class HomeViewController: UIViewController {
     }
 
     @IBAction func numberDecimalAction(_ sender: UIButton) {
-        let currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+        let currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
 
         if !operating && currentTemp.count >= kMaxLength {
             return
@@ -225,17 +247,21 @@ final class HomeViewController: UIViewController {
         resultLabel.text = resultLabel.text! + kDecimalSeparator!
         decimal = true
 
+        selectVisualOperation()
+
         sender.shine()
     }
 
     @IBAction func numberAction(_ sender: UIButton) {
-        var currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+        var currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
 
         operatorAC.setTitle("C", for: .normal)
 
         if !operating && currentTemp.count >= kMaxLength {
             return
         }
+
+        currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
 
         // Operation selected
         if operating {
@@ -254,6 +280,8 @@ final class HomeViewController: UIViewController {
         let number = sender.tag
         temp = Double(currentTemp + String(number))!
         resultLabel.text = printFormatter.string(from: NSNumber(value: temp))
+
+        selectVisualOperation()
 
         sender.shine()
     }
@@ -298,7 +326,7 @@ final class HomeViewController: UIViewController {
         }
 
         // Screen formatting
-        if let currentTotal = auxFormatter.string(from: NSNumber(value: total)), currentTotal.count > kMaxLength {
+        if let currentTotal = auxTotalFormatter.string(from: NSNumber(value: total)), currentTotal.count > kMaxLength {
             resultLabel.text = printScientificFormatter.string(from: NSNumber(value: total))
         } else {
             resultLabel.text = printFormatter.string(from: NSNumber(value: total))
@@ -306,7 +334,54 @@ final class HomeViewController: UIViewController {
 
         operation = .none
 
+        selectVisualOperation()
+
         print("TOTAL: \(total)")
+    }
+
+    // Show the selected operation visually
+    private func selectVisualOperation() {
+        if !operating {
+            operatorAddition.selectOperation(false)
+            operatorSubstraction.selectOperation(false)
+            operatorDivision.selectOperation(false)
+            operatorMultiplication.selectOperation(false)
+        }
+        else {
+            switch operation {
+            case .none, .percent:
+                operatorAddition.selectOperation(false)
+                operatorSubstraction.selectOperation(false)
+                operatorDivision.selectOperation(false)
+                operatorMultiplication.selectOperation(false)
+                break
+            case .addition:
+                operatorAddition.selectOperation(true)
+                operatorSubstraction.selectOperation(false)
+                operatorDivision.selectOperation(false)
+                operatorMultiplication.selectOperation(false)
+                break
+            case .substraction:
+                operatorAddition.selectOperation(false)
+                operatorSubstraction.selectOperation(true)
+                operatorDivision.selectOperation(false)
+                operatorMultiplication.selectOperation(false)
+                break
+            case .multiplication:
+                operatorAddition.selectOperation(false)
+                operatorSubstraction.selectOperation(false)
+                operatorDivision.selectOperation(false)
+                operatorMultiplication.selectOperation(true)
+                break
+            case .division:
+                operatorAddition.selectOperation(false)
+                operatorSubstraction.selectOperation(false)
+                operatorDivision.selectOperation(true)
+                operatorMultiplication.selectOperation(false)
+                break
+
+            }
+        }
     }
 
 }
