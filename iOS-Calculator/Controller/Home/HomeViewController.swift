@@ -44,6 +44,7 @@ final class HomeViewController: UIViewController {
 
     private let kDecimalSeparator = Locale.current.decimalSeparator
     private let kMaxLength = 9
+    private let kTotal = "total"
 
     // Aux values formatter
     private let auxFormatter: NumberFormatter = {
@@ -151,6 +152,8 @@ final class HomeViewController: UIViewController {
         operatorResult.round()
 
         numberDecimal.setTitle(kDecimalSeparator, for: .normal)
+
+        total = UserDefaults.standard.double(forKey: kTotal)
 
         result()
     }
@@ -335,6 +338,8 @@ final class HomeViewController: UIViewController {
         operation = .none
 
         selectVisualOperation()
+
+        UserDefaults.standard.setValue(total, forKey: kTotal)
 
         print("TOTAL: \(total)")
     }
