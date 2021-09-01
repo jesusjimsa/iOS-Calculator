@@ -124,10 +124,8 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Life Cycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
         // UI
         number0.round()
@@ -150,6 +148,12 @@ final class HomeViewController: UIViewController {
         operatorSubstraction.round()
         operatorAddition.round()
         operatorResult.round()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
 
         numberDecimal.setTitle(kDecimalSeparator, for: .normal)
 
